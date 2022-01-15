@@ -1,0 +1,34 @@
+server:
+  port: 8080
+  servlet:
+    session:
+      tracking-modes: cookie
+
+  error:
+    include-exception: true
+    include-message: never
+    include-stacktrace: never
+    include-binding-errors: never
+
+spring:
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/jwt_auth?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeNehavior=convertToNull&connectTimeout=60
+    username: teamVelpeDev
+    password: test
+
+  # JPA
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+      open-in-view: true
+
+  # ???
+  messages:
+    basename: messages, config/i18m/messages, errors
