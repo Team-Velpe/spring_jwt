@@ -61,6 +61,10 @@ public class Member implements UserDetails {
 
     }
 
+    public void modifyInfo(String nickname){
+        this.nickname = nickname;
+    }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
