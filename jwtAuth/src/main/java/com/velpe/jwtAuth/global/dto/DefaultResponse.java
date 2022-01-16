@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class DefaultResponse <T> {
+public  class DefaultResponse <T> {
 
     T data;
 
