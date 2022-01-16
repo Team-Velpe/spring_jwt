@@ -1,8 +1,8 @@
 server:
-  port: 8080
-  servlet:
-    session:
-      tracking-modes: cookie
+  port: 8083
+#  servlet:
+#    session:
+#      tracking-modes: cookie
 
   error:
     include-exception: true
@@ -29,6 +29,6 @@ spring:
         format_sql: true
       open-in-view: true
 
-  # ???
-  messages:
-    basename: messages, config/i18m/messages, errors
+#  # ???
+#  messages:
+#    basename: messages, config/i18m/messages, errors
