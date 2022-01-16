@@ -40,13 +40,8 @@ public class Question {
     // 연관관계 메소드
     public void setMember(Member member) {
 
-
-
-    }
-
-    public void setAnswers(Answer answers) {
-
-
+        // TODO : 회원 도메인 완료후 재작업
+        this.member = member;
 
     }
 
@@ -59,6 +54,14 @@ public class Question {
         question.body = body;
 
         return question;
+
+    }
+
+    // 질문 내용 변경
+    public void changeInfo( String title, String body ) {
+
+        this.title = title;
+        this.body = body;
 
     }
 

@@ -34,6 +34,14 @@ public class Answer {
     @Column(name = "update_date")
     private LocalDateTime updateDate;
 
+    // 연관관계 메소드
+    public void setQuestion(Question question) {
+
+        this.question = question;
+        question.getAnswers().add(this);
+
+    }
+
 
     // 생성메소드
     public static Answer createAnswer(String body) {
