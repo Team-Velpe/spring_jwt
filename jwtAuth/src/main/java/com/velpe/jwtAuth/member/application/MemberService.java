@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 public interface MemberService extends UserDetailsService {
 
-    void save(MemberSaveForm memberSaveForm);
+    void save(MemberSaveForm memberSaveForm) throws Exception;
 
     void checkDuplicate(String loginId, String loginPw, String email);
 

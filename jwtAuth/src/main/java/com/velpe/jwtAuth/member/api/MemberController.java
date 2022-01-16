@@ -24,40 +24,10 @@ public class MemberController {
     private final JwtProvider jwtProvider;
 
 
-    @PostMapping("/api/v1/members/login")
-    public DefaultResponse doLogin(@RequestBody MemberLoginForm memberLoginForm, HttpServletResponse response)  {
-
-        // FIXME : 로그인 로직 재구성
-
-        Member findMember = memberServiceV1.getMemberByLoginId(memberLoginForm.getLoginId());
-
-        String accessToken = jwtProvider.issueAccessToken(findMember.getLoginId(), findMember.getAuthority());
-        String refreshToken = jwtProvider.issueRefreshToken(findMember.getLoginId(), findMember.getAuthority());
-
-        jwtProvider.setHeaderAccessToken(response,accessToken);
-        jwtProvider.setHeaderRefreshToken(response, refreshToken);
-
-        jwtProvider.saveToken(accessToken, refreshToken, findMember);
-
-        return new DefaultResponse(
-                new TokenResponse(
-                        accessToken,
-                        refreshToken
-                )
-        );
-
-
-    }
-
     @GetMapping("/test")
     public String test(){
         return "ok";
     }
 
-    @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public String allExceptionHandler(Exception e){
-        return e.getMessage();
-    }
 
 }
