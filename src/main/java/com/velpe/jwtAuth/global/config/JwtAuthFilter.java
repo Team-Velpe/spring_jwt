@@ -13,11 +13,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 
 // 요청 들어올때 딱한번 실행되는 Filter
-@Component
+//@Component
 @RequiredArgsConstructor
 public class JwtAuthFilter extends OncePerRequestFilter {
 
@@ -48,7 +47,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 if ( isValidRefToken && isIssuedRefToken ) {
 
                     String loginId = jwtProvider.getLoginId(refreshToken);
-                    List<Role> authority = jwtProvider.getAuthority(loginId);
+                    Role authority = jwtProvider.getAuthority(loginId);
 
                     String newAccessToken = jwtProvider.issueAccessToken(loginId, authority);
 
@@ -63,6 +62,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
             filterChain.doFilter(request, response);
         }
+
+        filterChain.doFilter(request, response);
 
     }
 

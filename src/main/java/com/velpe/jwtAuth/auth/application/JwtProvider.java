@@ -43,7 +43,7 @@ public class JwtProvider {
      * @param authority
      * @return Access Token
      */
-    public String issueAccessToken(String loginId, List<Role> authority) {
+    public String issueAccessToken(String loginId, Role authority) {
         return this.issueToken(loginId, authority, accessTokenExpMs);
     }
 
@@ -53,7 +53,7 @@ public class JwtProvider {
      * @param authority
      * @return Refresh Token
      */
-    public String issueRefreshToken(String loginId, List<Role> authority) {
+    public String issueRefreshToken(String loginId, Role authority) {
         return this.issueToken(loginId, authority, refreshTokenExpMs);
     }
 
@@ -65,7 +65,7 @@ public class JwtProvider {
      * @param tokenSort
      * @return
      */
-    public String issueToken(String loginId, List<Role> authority, long tokenSort) {
+    public String issueToken(String loginId, Role authority, long tokenSort) {
 
         Claims claims = Jwts.claims().setSubject(loginId);
         claims.put("authority", authority);
@@ -176,8 +176,8 @@ public class JwtProvider {
         return blackListRepository.existsByRefreshToken(refreshToken);
     }
 
-    public List<Role> getAuthority(String loginId) {
-        return List.of(memberService.getMemberByLoginId(loginId).getAuthority());
+    public Role getAuthority(String loginId) {
+        return memberService.getMemberByLoginId(loginId).getAuthority();
     }
 
     public void saveToken(String accessToken, String refreshToken, Member member) {

@@ -1,11 +1,14 @@
 package com.velpe.jwtAuth.global.config;
 
+import com.velpe.jwtAuth.auth.application.JwtProvider;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,14 +21,14 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.List;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
 
     @Autowired
     private JwtEntryPoint jwtEntryPoint;
 
     @Autowired
-    private JwtAuthFilter jwtAuthFilter;
+    private JwtProvider jwtProvider;
 
 
     @Override
@@ -46,25 +49,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         .and()
+            .authorizeRequests()
+            .mvcMatchers(
+                    "/**").permitAll()
+            .anyRequest()
+            .authenticated()
+
+        .and()
             .exceptionHandling()
                 .authenticationEntryPoint(jwtEntryPoint)
         .and()
             .addFilterBefore(
-                    jwtAuthFilter,
+                    new JwtAuthFilter(jwtProvider),
                     UsernamePasswordAuthenticationFilter.class
             );
-
-        http
-            .authorizeRequests()
-                .mvcMatchers(
-                        "/"
-                ).permitAll()
-                .mvcMatchers(
-                        "/api/v1/articles/**"
-                ).authenticated();
-
-
-
 
     }
 
