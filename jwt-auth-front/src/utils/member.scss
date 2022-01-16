@@ -1,0 +1,74 @@
+// member.scss
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 1.2rem;
+
+  .form-title {
+    flex-grow: 0;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1.2rem;
+    text-align: center;
+  }
+
+  // input
+  .form-input {
+    display: flex;
+    flex-direction: column;
+
+    input {
+      width: 300px;
+      border: 1px solid #dbdbdb;
+      border-radius: 6px;
+      padding: 0.8rem;
+      font-size: 1rem;
+      color: #1f1a66;
+    }
+
+    .form-btn {
+      border: none;
+      border-radius: 6px;
+      padding: 0.8rem;
+      margin-top: 0.4rem;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #fbfaff;
+      background-color: #ff6600;
+      transition: 0.2s;
+    }
+
+    .form-btn:hover {
+      transition: 0.2s;
+      background: #ff9100;
+    }
+
+    .form-join {
+      margin: 0.7rem 0 0 0;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #7c7c7c;
+    }
+
+    .form-join:hover {
+      text-decoration: underline;
+    }
+
+    .form-input-name {
+      margin-bottom: 1rem;
+
+      p {
+        margin-bottom: 0.4rem;
+
+        span {
+          color: #fc0202;
+        }
+      }
+    }
+  }
+
+  //   .form-grow {
+  //     flex-grow: 0;
+  //   }
+}
