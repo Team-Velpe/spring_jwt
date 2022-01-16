@@ -24,7 +24,7 @@ public class QuestionController {
     private final QuestionService questionService;
 
 
-    @PostMapping("/api/v1/qna")
+    @PostMapping("/api/v1/qna/q")
     @ResponseStatus(HttpStatus.CREATED)
     public DefaultResponse writeQuestion(@RequestBody @Valid CreateQuestionRequest createQuestionRequest, Principal principal) throws IllegalStateException {
 
@@ -45,7 +45,7 @@ public class QuestionController {
 
     }
 
-    @PutMapping("/api/v1/qna/{id}")
+    @PutMapping("/api/v1/qna/q/{id}")
     @ResponseStatus(HttpStatus.OK)
     public DefaultResponse updateQuestion(@PathVariable(name = "id") Long id, @RequestBody @Valid UpdateQuestionRequest updateQuestionRequest, Principal principal) throws IllegalStateException {
 
@@ -62,7 +62,7 @@ public class QuestionController {
 
     }
 
-    @DeleteMapping("/api/v1/qna/{id}")
+    @DeleteMapping("/api/v1/qna/q/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public MessageResponse deleteQuestion(@PathVariable(name = "id") Long id) {
 
@@ -73,7 +73,7 @@ public class QuestionController {
         );
     }
 
-    @GetMapping("/api/v1/qna/{id}")
+    @GetMapping("/api/v1/qna/q/{id}")
     public DefaultResponse showQuestionDetail(@PathVariable(name = "id") Long id) {
 
         QuestionDTO questionDTO = questionService.detail(id);
@@ -83,7 +83,7 @@ public class QuestionController {
         );
     }
 
-    @GetMapping("/api/v1/qna")
+    @GetMapping("/api/v1/qna/q")
     public DefaultResponse showQuestionList() {
 
         Map<String, Object> content = new HashMap<>();

@@ -29,12 +29,19 @@ public class Answer {
     private Question question;
 
     @Column(name = "reg_date")
-    private LocalDateTime regDate;
+    private LocalDateTime regDate = LocalDateTime.now();
 
     @Column(name = "update_date")
-    private LocalDateTime updateDate;
+    private LocalDateTime updateDate = LocalDateTime.now();
 
     // 연관관계 메소드
+    public void setMember(Member member) {
+
+        this.member = member;
+//        member.getAnswer()
+
+    }
+
     public void setQuestion(Question question) {
 
         this.question = question;
@@ -52,6 +59,11 @@ public class Answer {
 
         return answer;
 
+    }
+
+    // 수정 메소드
+    public void changeInfo(String body) {
+        this.body = body;
     }
 
 
