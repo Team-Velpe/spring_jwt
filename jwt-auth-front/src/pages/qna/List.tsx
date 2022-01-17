@@ -1,6 +1,6 @@
 import React from "react";
 
-import "../../scss/qna.scss";
+import "../../styles/qna.scss";
 
 const List = () => {
   return (

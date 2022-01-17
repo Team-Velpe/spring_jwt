@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AppLayout from "./pages/AppLayout";
 import { Main, Join, Login, NotFound, Modify, List } from "./pages/Pages";
 
-import "./scss/global.scss"; // 전역 css 설정
+import "./styles/global.scss"; // 전역 css 설정
 
 const App = () => {
   return (
