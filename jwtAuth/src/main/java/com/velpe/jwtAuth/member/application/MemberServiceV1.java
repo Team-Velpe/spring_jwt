@@ -2,6 +2,7 @@ package com.velpe.jwtAuth.member.application;
 
 import com.velpe.jwtAuth.member.dao.MemberRepository;
 import com.velpe.jwtAuth.member.domain.Member;
+import com.velpe.jwtAuth.member.dto.MemberModifyForm;
 import com.velpe.jwtAuth.member.dto.MemberSaveForm;
 import com.velpe.jwtAuth.member.dto.Role;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -43,6 +45,27 @@ public class MemberServiceV1 implements MemberService {
 
         memberRepository.save(member);
     }
+
+    @Transactional
+    public void modifyInfo(Long memberId, MemberModifyForm memberModifyForm) throws Exception {
+        if(isMemberExistByNickname(memberModifyForm.getNickname())){
+            throw new Exception("이미 사용 중인 닉네임입니다.");
+        }
+
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(()->new NoSuchElementException("존재하지 않는 회원입니다."));
+
+        member.modifyInfo(memberModifyForm.getNickname());
+    }
+
+    @Transactional
+    public void delete(Long memberId) {
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(()->new NoSuchElementException("존재하지 않는 회원입니다."));
+
+        memberRepository.delete(member);
+    }
+
 
     @Override
     public void checkDuplicate(String loginId, String loginPw, String email) {
@@ -83,24 +106,19 @@ public class MemberServiceV1 implements MemberService {
     }
 
     private boolean isMemberExistByLoginId(String loginId){
-        if(memberRepository.findByLoginId(loginId).isEmpty()){
-            return false;
-        }
-        return true;
+        return !memberRepository.findByLoginId(loginId).isEmpty();
     }
 
     private boolean isMemberExistByEmail(String email) {
-        if(memberRepository.findByEmail(email).isEmpty()){
-            return false;
-        }
-        return true;
+        return !memberRepository.findByEmail(email).isEmpty();
     }
 
     private boolean isMemberExistByNickname(String nickname) {
-        if(memberRepository.findByNickname(nickname).isEmpty()){
-            return false;
-        }
-        return true;
+        return !memberRepository.findByNickname(nickname).isEmpty();
     }
 
+
+    public List<Member> findAll() {
+        return memberRepository.findAll();
+    }
 }
