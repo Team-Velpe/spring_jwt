@@ -54,8 +54,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
                     String newAccessToken = jwtProvider.issueAccessToken(loginId, authority);
 
-                    jwtProvider.setHeaderAccessToken(response, newAccessToken);
-
                     setAuthentication(newAccessToken);
 
                 }

@@ -14,10 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -43,15 +40,12 @@ public class SignController {
             throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
         }
 
-//        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(memberLoginForm.getLoginId(), memberLoginForm.getLoginPw());
-//        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
-//        SecurityContextHolder.getContext().setAuthentication(authentication);
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(memberLoginForm.getLoginId(), memberLoginForm.getLoginPw());
+        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String accessToken = jwtProvider.issueAccessToken(findMember.getLoginId(), findMember.getAuthority());
         String refreshToken = jwtProvider.issueRefreshToken(findMember.getLoginId(), findMember.getAuthority());
-
-        jwtProvider.setHeaderAccessToken(response,accessToken);
-        jwtProvider.setHeaderRefreshToken(response, refreshToken);
 
         jwtProvider.saveToken(refreshToken, findMember);
 
@@ -68,6 +62,24 @@ public class SignController {
         memberService.save(memberSaveForm);
         return new DefaultResponse(
                 "가입 성공"
+        );
+    }
+
+    @GetMapping("/test")
+    public DefaultResponse showTest(){
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        return new DefaultResponse(
+                username
+        );
+    }
+
+    @GetMapping("/test2")
+    public DefaultResponse showTest2(){
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        return new DefaultResponse(
+                username
         );
     }
 }
