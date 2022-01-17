@@ -2,7 +2,9 @@ package com.velpe.jwtAuth.qna.application;
 
 import com.velpe.jwtAuth.qna.dao.QuestionRepository;
 import com.velpe.jwtAuth.qna.domain.Question;
+import com.velpe.jwtAuth.qna.dto.AnswerDTO;
 import com.velpe.jwtAuth.qna.dto.QuestionDTO;
+import com.velpe.jwtAuth.qna.dto.QuestionDetailDTO;
 import com.velpe.jwtAuth.qna.dto.UpdateQuestionRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -34,8 +36,15 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public QuestionDTO detail(Long id) throws NoSuchElementException {
-        return new QuestionDTO(getOne(id));
+    public QuestionDetailDTO detail(Long id) throws NoSuchElementException {
+
+        Question findQuestion = getOne(id);
+        List<AnswerDTO> answers = findQuestion.getAnswers()
+                .stream()
+                .map(AnswerDTO::new)
+                .collect(Collectors.toList());
+
+        return new QuestionDetailDTO(findQuestion, answers);
     }
 
     @Override

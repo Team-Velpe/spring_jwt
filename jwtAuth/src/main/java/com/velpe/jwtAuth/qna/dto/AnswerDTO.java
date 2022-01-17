@@ -1,5 +1,6 @@
 package com.velpe.jwtAuth.qna.dto;
 
+import com.velpe.jwtAuth.qna.domain.Answer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -12,5 +13,11 @@ public class AnswerDTO {
     private String body;
 
     private String nickname;
+
+    public AnswerDTO(Answer answer) {
+        this.a_id = answer.getId();
+        this.body = answer.getBody();
+        this.nickname = answer.getMember().getNickname();
+    }
 
 }

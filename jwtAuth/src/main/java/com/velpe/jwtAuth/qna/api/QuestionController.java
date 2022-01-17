@@ -6,6 +6,7 @@ import com.velpe.jwtAuth.qna.application.QuestionService;
 import com.velpe.jwtAuth.qna.domain.Question;
 import com.velpe.jwtAuth.qna.dto.CreateQuestionRequest;
 import com.velpe.jwtAuth.qna.dto.QuestionDTO;
+import com.velpe.jwtAuth.qna.dto.QuestionDetailDTO;
 import com.velpe.jwtAuth.qna.dto.UpdateQuestionRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -76,7 +77,7 @@ public class QuestionController {
     @GetMapping("/api/v1/qna/q/{id}")
     public DefaultResponse showQuestionDetail(@PathVariable(name = "id") Long id) {
 
-        QuestionDTO questionDTO = questionService.detail(id);
+        QuestionDetailDTO questionDTO = questionService.detail(id);
 
         return new DefaultResponse(
                 questionDTO

@@ -2,6 +2,7 @@ package com.velpe.jwtAuth.qna.application;
 
 import com.velpe.jwtAuth.qna.domain.Question;
 import com.velpe.jwtAuth.qna.dto.QuestionDTO;
+import com.velpe.jwtAuth.qna.dto.QuestionDetailDTO;
 import com.velpe.jwtAuth.qna.dto.UpdateQuestionRequest;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public interface QuestionService {
 
     QuestionDTO update(Long id, UpdateQuestionRequest updateQuestionRequest);
 
-    QuestionDTO detail(Long id);
+    QuestionDetailDTO detail(Long id);
 
     List<QuestionDTO> getList();
 
