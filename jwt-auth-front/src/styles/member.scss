@@ -1,0 +1,79 @@
+@import "common.scss";
+
+// member.scss
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 1.2rem;
+
+  .form-title {
+    flex-grow: 0;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1.2rem;
+    text-align: center;
+  }
+
+  .form-info {
+    text-align: center;
+    color: $gray;
+  }
+  // input
+  .form-input {
+    display: flex;
+    flex-direction: column;
+
+    input {
+      width: 300px;
+      border: 1px solid $white-gray;
+      border-radius: 6px;
+      padding: 0.8rem;
+      font-size: 1rem;
+    }
+
+    .form-btn {
+      border: none;
+      border-radius: 6px;
+      padding: 0.8rem;
+      margin-top: 0.4rem;
+      font-size: 1rem;
+      font-weight: bold;
+      color: $white;
+      background-color: $main-color;
+      transition: 0.2s;
+    }
+
+    .form-btn:hover {
+      transition: 0.2s;
+      background: $hover-color;
+    }
+
+    .form-join {
+      margin: 0.7rem 0 0 0;
+      text-align: center;
+      font-size: 0.9rem;
+      color: $gray;
+    }
+
+    .form-join:hover {
+      text-decoration: underline;
+    }
+
+    .form-input-name {
+      margin-bottom: 1rem;
+
+      p {
+        margin-bottom: 0.4rem;
+
+        span {
+          color: $accent-color;
+        }
+      }
+    }
+  }
+
+  //   .form-grow {
+  //     flex-grow: 0;
+  //   }
+}

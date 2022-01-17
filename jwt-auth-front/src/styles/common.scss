@@ -1,0 +1,44 @@
+// common.scss
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pretendard-SemiBold";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pretendard-Bold";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pretendard-ExtraBold";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-ExtraBold.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+}
+
+// font
+$font-reg: Pretendard-Regular, serif;
+$font-sem: Pretendard-Semi-Bold, serif;
+$font-bold: Pretendard-Bold, serif;
+$font-ext: Pretendard-ExtraBold, serif;
+
+// colors
+$main-color: #ff4800;
+$sub-color: #0c0e36;
+$hover-color: #ffae00;
+$font-color: #272727;
+$accent-color: #fc0202;
+$gray: #7e7d82;
+$white-gray: #dbdbdb; // footer background
+$white: #fcfcfc;
