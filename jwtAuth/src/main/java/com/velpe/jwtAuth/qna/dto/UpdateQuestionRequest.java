@@ -7,7 +7,7 @@ import javax.validation.constraints.NotBlank;
 
 @Data
 @AllArgsConstructor
-public class CreateQuestionRequest {
+public class UpdateQuestionRequest {
 
     @NotBlank
     private String title;

@@ -7,15 +7,12 @@ import javax.validation.constraints.NotBlank;
 
 @Data
 @AllArgsConstructor
-public class CreateQuestionRequest {
+public class CreateAnswerRequest {
 
-    @NotBlank
-    private String title;
     @NotBlank
     private String body;
 
     @NotBlank
     private String loginId;
-
 
 }
