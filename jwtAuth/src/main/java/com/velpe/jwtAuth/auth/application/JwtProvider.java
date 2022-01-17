@@ -27,7 +27,7 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 public class JwtProvider {
 
-    private static SecretKey secretKey = Keys.hmacShaKeyFor(Decoders.BASE64.decode("VGVhbVZlbHBlVGVzdFNlY3JldEtleUhhcHB5RGF5SGFwcHlOZXdZZWFyWWVzdGVyRGF5VE9kYXk="));
+    private static SecretKey secretKey = Keys.hmacShaKeyFor(Decoders.BASE64.decode("d3Bxa2Z3aGFlaGx3a2RscnBhdWNxanNXb3NpZHBma2RsdG1xamZrZmRqc3dwZGJydGxxdGtya2VobGZ3bGFoZm1ycFR3bGFrc3RscWtmZGxyanNka2Zka3FocnBUd2xxbmZka3Nna3NsUmtx"));
 
     private long accessTokenExpMs = 1000 * 60 * 30L;
     private long refreshTokenExpMs = 1000 * 60 * 60 * 24L;
@@ -161,11 +161,11 @@ public class JwtProvider {
     }
 
     public void setHeaderAccessToken(HttpServletResponse resp, String accessToken) {
-        resp.setHeader("authorization", "bearer " + accessToken);
+        resp.addHeader("authorization", "Bearer " + accessToken);
     }
 
     public void setHeaderRefreshToken(HttpServletResponse resp, String refreshToken) {
-        resp.setHeader("refreshToken", "bearer " + refreshToken);
+        resp.setHeader("refreshToken", "Bearer " + refreshToken);
     }
 
     public boolean isValidRefToken(String refreshToken) {
@@ -180,10 +180,10 @@ public class JwtProvider {
         return memberService.getMemberByLoginId(loginId).getAuthority();
     }
 
-    public void saveToken(String accessToken, String refreshToken, Member member) {
+    public void saveToken(String refreshToken, Member member) {
 
         AuthStorage authStorage = AuthStorage.createAuthStorage(
-                accessToken,
+//                accessToken,
                 refreshToken,
                 member
         );

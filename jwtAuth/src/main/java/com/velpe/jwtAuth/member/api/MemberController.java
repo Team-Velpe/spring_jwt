@@ -25,6 +25,15 @@ public class MemberController {
     private final MemberServiceV1 memberService;
     private final JwtProvider jwtProvider;
 
+    @GetMapping
+    public DefaultResponse showAllMembers(){
+        List<Member> memberList = memberService.findAll();
+        System.out.println("showallmember!!!!!");
+        return new DefaultResponse(
+                memberList.get(0).getLoginId()
+        );
+    }
+
     @PutMapping("/{memberId}")
     public DefaultResponse modifyMemberInfo(
             @PathVariable Long memberId, @RequestBody MemberModifyForm memberModifyForm) throws Exception {

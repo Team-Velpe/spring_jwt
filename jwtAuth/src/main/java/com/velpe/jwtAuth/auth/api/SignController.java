@@ -8,6 +8,12 @@ import com.velpe.jwtAuth.member.domain.Member;
 import com.velpe.jwtAuth.member.dto.MemberLoginForm;
 import com.velpe.jwtAuth.member.dto.MemberSaveForm;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +28,7 @@ public class SignController {
 
     private final MemberServiceV1 memberService;
     private final JwtProvider jwtProvider;
+    private final AuthenticationManagerBuilder authenticationManagerBuilder;
 
     @PostMapping("/in")
     public DefaultResponse doLogin(@RequestBody MemberLoginForm memberLoginForm, HttpServletResponse response)  {
@@ -30,13 +37,23 @@ public class SignController {
 
         Member findMember = memberService.getMemberByLoginId(memberLoginForm.getLoginId());
 
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+        if(!passwordEncoder.matches(memberLoginForm.getLoginPw(), findMember.getLoginPw())){
+            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+        }
+
+//        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(memberLoginForm.getLoginId(), memberLoginForm.getLoginPw());
+//        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+//        SecurityContextHolder.getContext().setAuthentication(authentication);
+
         String accessToken = jwtProvider.issueAccessToken(findMember.getLoginId(), findMember.getAuthority());
         String refreshToken = jwtProvider.issueRefreshToken(findMember.getLoginId(), findMember.getAuthority());
 
         jwtProvider.setHeaderAccessToken(response,accessToken);
         jwtProvider.setHeaderRefreshToken(response, refreshToken);
 
-        jwtProvider.saveToken(accessToken, refreshToken, findMember);
+        jwtProvider.saveToken(refreshToken, findMember);
 
         return new DefaultResponse(
                 new TokenResponse(

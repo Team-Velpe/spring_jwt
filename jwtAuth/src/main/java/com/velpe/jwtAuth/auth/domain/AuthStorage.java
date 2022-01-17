@@ -18,8 +18,8 @@ public class AuthStorage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "access_token")
-    private String accessToken;
+//    @Column(name = "access_token")
+//    private String accessToken;
 
     @Column(name = "refresh_token")
     private String refreshToken;
@@ -34,11 +34,11 @@ public class AuthStorage {
     @Column(name = "update_date")
     private LocalDateTime updateDate = LocalDateTime.now();
 
-    public static AuthStorage createAuthStorage(String accessToken, String refreshToken, Member member) {
+    public static AuthStorage createAuthStorage(String refreshToken, Member member) {
 
         AuthStorage authStorage = new AuthStorage();
 
-        authStorage.accessToken = accessToken;
+//        authStorage.accessToken = accessToken;
         authStorage.refreshToken = refreshToken;
 
         authStorage.member = member;
