@@ -35,7 +35,6 @@ class AnswerServiceImplTest {
                 "user1",
                 "user1",
                 "user1",
-                "user1",
                 "user1"
                 );
 
@@ -90,7 +89,6 @@ class AnswerServiceImplTest {
                 "user1",
                 "user1",
                 "user1",
-                "user1",
                 "user1"
         );
 
@@ -140,7 +138,6 @@ class AnswerServiceImplTest {
 
         // given
         MemberSaveForm memberSaveForm = new MemberSaveForm(
-                "user1",
                 "user1",
                 "user1",
                 "user1",

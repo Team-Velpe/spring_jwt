@@ -37,7 +37,6 @@ public class MemberServiceV1 implements MemberService {
         Member member = Member.createMember(
                 memberSaveForm.getLoginId(),
                 passwordEncoder.encode(memberSaveForm.getLoginPw()),
-                memberSaveForm.getName(),
                 memberSaveForm.getNickname(),
                 Role.MEMBER,
                 memberSaveForm.getEmail()
@@ -64,6 +63,10 @@ public class MemberServiceV1 implements MemberService {
                 .orElseThrow(()->new NoSuchElementException("존재하지 않는 회원입니다."));
 
         memberRepository.delete(member);
+    }
+
+    public Member findByLoginId(String loginId){
+        return memberRepository.findByLoginId(loginId).orElseThrow();
     }
 
 
