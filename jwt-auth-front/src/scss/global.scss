@@ -1,15 +1,11 @@
-// global.scss
-@font-face {
-  font-family: "Pretendard-Regular";
-  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
-}
+@import "common.scss";
 
+// global.scss
 body,
 html {
   box-sizing: border-box;
-  font-family: Pretendard-Regular, serif;
+  font-family: $font-reg;
+  color: $font-color;
 }
 
 * {
@@ -29,11 +25,11 @@ a {
 
 button {
   cursor: pointer;
-  font-family: Pretendard-Regular, serif;
+  font-family: $font-reg;
 }
 
 input {
-  font-family: Pretendard-Regular, serif;
+  font-family: $font-reg;
   color: inherit;
 }
 
@@ -43,8 +39,8 @@ input {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background: #0c0e36;
-  color: white;
+  background: $sub-color;
+  color: $white;
   padding: 1.8rem;
 
   a {
@@ -58,7 +54,6 @@ input {
     align-items: center;
 
     .header-logo {
-      font-weight: bold;
       padding: 0.6rem;
     }
 
@@ -83,12 +78,12 @@ input {
         a {
           padding: 0.6rem;
           border-radius: 0.4rem;
-          background-color: #ff6600;
+          background-color: $main-color;
           transition: 0.2s;
         }
 
         a:hover {
-          background-color: #ff9100;
+          background-color: $hover-color;
           transition: 0.2s;
         }
       }
@@ -101,9 +96,9 @@ input {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  background: #e7e6ed;
+  background: $white-gray;
   padding: 2.2rem;
-  color: #7e7d82;
+  color: $gray;
 
   .footer-info {
     font-size: 0.9rem;
@@ -122,7 +117,7 @@ input {
     padding: 1.2rem;
 
     svg {
-      fill: #0c0e36;
+      fill: $main-color;
     }
   }
 
@@ -134,13 +129,13 @@ input {
   .notfound-link {
     padding: 0.6rem;
     border-radius: 0.4rem;
-    background-color: #ff6600;
+    background-color: $main-color;
     transition: 0.2s;
-    color: #fcfcfc;
+    color: $white;
   }
 
   .notfound-link:hover {
-    background-color: #ff9100;
+    background-color: $hover-color;
     transition: 0.2s;
   }
 }

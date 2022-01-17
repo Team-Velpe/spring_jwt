@@ -1,0 +1,19 @@
+@import "../common.scss";
+
+// button.scss
+.form-btn {
+  border: none;
+  border-radius: 6px;
+  padding: 0.8rem;
+  margin-top: 0.4rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: $white;
+  background-color: $main-color;
+  transition: 0.2s;
+}
+
+.form-btn:hover {
+  transition: 0.2s;
+  background: $hover-color;
+}

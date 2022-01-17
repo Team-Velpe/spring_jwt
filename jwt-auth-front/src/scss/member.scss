@@ -1,3 +1,5 @@
+@import "common.scss";
+
 // member.scss
 .form {
   display: flex;
@@ -13,6 +15,10 @@
     text-align: center;
   }
 
+  .form-info {
+    text-align: center;
+    color: $gray;
+  }
   // input
   .form-input {
     display: flex;
@@ -20,11 +26,10 @@
 
     input {
       width: 300px;
-      border: 1px solid #dbdbdb;
+      border: 1px solid $white-gray;
       border-radius: 6px;
       padding: 0.8rem;
       font-size: 1rem;
-      color: #1f1a66;
     }
 
     .form-btn {
@@ -34,21 +39,21 @@
       margin-top: 0.4rem;
       font-size: 1rem;
       font-weight: bold;
-      color: #fbfaff;
-      background-color: #ff6600;
+      color: $white;
+      background-color: $main-color;
       transition: 0.2s;
     }
 
     .form-btn:hover {
       transition: 0.2s;
-      background: #ff9100;
+      background: $hover-color;
     }
 
     .form-join {
       margin: 0.7rem 0 0 0;
       text-align: center;
       font-size: 0.9rem;
-      color: #7c7c7c;
+      color: $gray;
     }
 
     .form-join:hover {
@@ -62,7 +67,7 @@
         margin-bottom: 0.4rem;
 
         span {
-          color: #fc0202;
+          color: $accent-color;
         }
       }
     }

@@ -8,7 +8,7 @@ const Header = () => {
       <nav className="header-nav">
         <p className="header-logo">
           <Link to="/">
-            <Logo width="60" height="auto" fill="#ff6600" />
+            <Logo width="60" height="auto" fill="#ff4800" />
           </Link>
         </p>
 

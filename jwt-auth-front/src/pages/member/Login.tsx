@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import "../../utils/member.scss";
+import "../../scss/member.scss";
 
 const Login = () => {
   return (

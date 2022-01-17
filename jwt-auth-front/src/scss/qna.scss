@@ -1,3 +1,5 @@
+@import "common.scss";
+
 // qna.scss
 .qna {
   width: 100%;
@@ -16,9 +18,8 @@
     width: 80%;
     padding: 1rem;
     margin: 0.4rem 0 0.4rem 0;
-    // box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     border-radius: 10px;
-    border: 1px solid #dbdbdb;
+    border: 1px solid $white-gray;
 
     .qna-cont {
       display: flex;
@@ -29,7 +30,7 @@
         font-size: 1.6rem;
         font-weight: bold;
         padding: 0.8rem;
-        color: #ff6600;
+        color: $main-color;
       }
 
       .qna-info {
@@ -38,7 +39,7 @@
         }
 
         .qna-date {
-          color: #6d6d6d;
+          color: $gray;
         }
       }
     }
