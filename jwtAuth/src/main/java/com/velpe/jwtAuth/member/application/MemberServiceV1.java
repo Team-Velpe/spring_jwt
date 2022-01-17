@@ -73,9 +73,8 @@ public class MemberServiceV1 implements MemberService {
     }
 
     @Override
-    @Deprecated
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return memberRepository.findByLoginId(username).get();
+    public Member loadUserByUsername(String username) throws UsernameNotFoundException {
+        return memberRepository.findByLoginId(username).orElseThrow();
     }
 
     @Override

@@ -27,7 +27,11 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 public class JwtProvider {
 
-    private static SecretKey secretKey = Keys.hmacShaKeyFor(Decoders.BASE64.decode("d3Bxa2Z3aGFlaGx3a2RscnBhdWNxanNXb3NpZHBma2RsdG1xamZrZmRqc3dwZGJydGxxdGtya2VobGZ3bGFoZm1ycFR3bGFrc3RscWtmZGxyanNka2Zka3FocnBUd2xxbmZka3Nna3NsUmtx"));
+    // private static SecretKey secretKey = Keys.hmacShaKeyFor(Decoders.BASE64.decode("d3Bxa2Z3aGFlaGx3a2RscnBhdWNxanNXb3NpZHBma2RsdG1xamZrZmRqc3dwZGJydGxxdGtya2VobGZ3bGFoZm1ycFR3bGFrc3RscWtmZGxyanNka2Zka3FocnBUd2xxbmZka3Nna3NsUmtx"));
+
+    private String secret = "d3Bxa2Z3aGFlaGx3a2RscnBhdWNxanNXb3NpZHBma2RsdG1xamZrZmRqc3dwZGJydGxxdGtya2VobGZ3bGFoZm1ycFR3bGFrc3RscWtmZGxyanNka2Zka3FocnBUd2xxbmZka3Nna3NsUmtx";
+    byte[] keyBytes = Decoders.BASE64.decode(secret);
+    private SecretKey secretKey = Keys.hmacShaKeyFor(keyBytes);
 
     private long accessTokenExpMs = 1000 * 60 * 30L;
     private long refreshTokenExpMs = 1000 * 60 * 60 * 24L;
@@ -102,7 +106,7 @@ public class JwtProvider {
                 .parserBuilder()
                 .setSigningKey(secretKey)
                 .build()
-                .parseClaimsJwt(token)
+                .parseClaimsJws(token)
                 .getBody()
                 .getSubject();
 
@@ -117,7 +121,7 @@ public class JwtProvider {
             Jwts.parserBuilder()
                     .setSigningKey(secretKey)
                     .build()
-                    .parseClaimsJwt(token);
+                    .parseClaimsJws(token);
 
             return true;
 
@@ -160,13 +164,13 @@ public class JwtProvider {
 
     }
 
-    public void setHeaderAccessToken(HttpServletResponse resp, String accessToken) {
-        resp.addHeader("authorization", "Bearer " + accessToken);
-    }
-
-    public void setHeaderRefreshToken(HttpServletResponse resp, String refreshToken) {
-        resp.setHeader("refreshToken", "Bearer " + refreshToken);
-    }
+//    public void setHeaderAccessToken(HttpServletResponse resp, String accessToken) {
+//        resp.setHeader("authorization", "Bearer " + accessToken);
+//    }
+//
+//    public void setHeaderRefreshToken(HttpServletResponse resp, String refreshToken) {
+//        resp.setHeader("refreshToken", "Bearer " + refreshToken);
+//    }
 
     public boolean isValidRefToken(String refreshToken) {
         return authRepository.existsByRefreshToken(refreshToken);
