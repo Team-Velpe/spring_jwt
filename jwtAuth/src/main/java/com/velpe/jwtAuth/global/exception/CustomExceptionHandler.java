@@ -28,6 +28,14 @@ public class CustomExceptionHandler {
         );
     }
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(IllegalStateException.class)
+    public ErrorResponse unValidRequestException(IllegalStateException e) {
+        return new ErrorResponse(
+                e.getMessage()
+        );
+    }
+
 
 
 }
