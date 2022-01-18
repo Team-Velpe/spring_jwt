@@ -2,6 +2,9 @@ package com.velpe.jwtAuth.qna.api;
 
 import com.velpe.jwtAuth.global.dto.DefaultResponse;
 import com.velpe.jwtAuth.global.dto.MessageResponse;
+import com.velpe.jwtAuth.member.application.MemberService;
+import com.velpe.jwtAuth.member.application.MemberServiceV1;
+import com.velpe.jwtAuth.member.domain.Member;
 import com.velpe.jwtAuth.qna.application.QuestionService;
 import com.velpe.jwtAuth.qna.domain.Question;
 import com.velpe.jwtAuth.qna.dto.CreateQuestionRequest;
@@ -23,6 +26,7 @@ import java.util.Objects;
 public class QuestionController {
 
     private final QuestionService questionService;
+    private final MemberService memberService;
 
 
     @PostMapping("/api/v1/qna/q")
@@ -33,10 +37,14 @@ public class QuestionController {
             throw new IllegalStateException("올바르지 않은 요청입니다.");
         }
 
+        Member currentMember = memberService.getMemberByLoginId(principal.getName());
+
         Question question = Question.createQuestion(
                 createQuestionRequest.getTitle(),
                 createQuestionRequest.getBody()
         );
+
+        question.setMember(currentMember);
 
         questionService.save(question);
 
