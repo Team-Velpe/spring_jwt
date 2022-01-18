@@ -29,8 +29,8 @@ public class QuestionDTO {
 
         nickname = question.getMember().getNickname();
 
-        reg_date = question.getRegDate();
-        update_date = question.getUpdateDate();
+        reg_date = question.getCreatedDate();
+        update_date = question.getModifiedDate();
 
     }
 

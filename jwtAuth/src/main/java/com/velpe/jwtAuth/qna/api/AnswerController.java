@@ -4,6 +4,7 @@ import com.velpe.jwtAuth.global.dto.DefaultResponse;
 import com.velpe.jwtAuth.global.dto.MessageResponse;
 import com.velpe.jwtAuth.member.application.MemberService;
 import com.velpe.jwtAuth.member.domain.Member;
+import com.velpe.jwtAuth.qna.application.AnswerService;
 import com.velpe.jwtAuth.qna.application.AnswerServiceImpl;
 import com.velpe.jwtAuth.qna.application.QuestionService;
 import com.velpe.jwtAuth.qna.domain.Answer;
@@ -22,7 +23,7 @@ import java.security.Principal;
 @RequiredArgsConstructor
 public class AnswerController {
 
-    private final AnswerServiceImpl answerService;
+    private final AnswerService answerService;
     private final QuestionService questionService;
     private final MemberService memberService;
 

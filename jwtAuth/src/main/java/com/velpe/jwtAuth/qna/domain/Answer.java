@@ -1,10 +1,12 @@
 package com.velpe.jwtAuth.qna.domain;
 
+import com.velpe.jwtAuth.global.util.BaseTimeEntity;
 import com.velpe.jwtAuth.member.domain.Member;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -12,7 +14,8 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Answer {
+@EntityListeners(AuditingEntityListener.class)
+public class Answer extends BaseTimeEntity {
 
     @Id
     @Column(name = "a_id")
@@ -28,12 +31,6 @@ public class Answer {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "q_id")
     private Question question;
-
-    @Column(name = "reg_date")
-    private LocalDateTime regDate = LocalDateTime.now();
-
-    @Column(name = "update_date")
-    private LocalDateTime updateDate = LocalDateTime.now();
 
     // 연관관계 메소드
     public void setMember(Member member) {

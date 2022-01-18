@@ -1,11 +1,13 @@
 package com.velpe.jwtAuth.member.domain;
 
+import com.velpe.jwtAuth.global.util.BaseTimeEntity;
 import com.velpe.jwtAuth.member.dto.Role;
 import com.velpe.jwtAuth.qna.domain.Answer;
 import com.velpe.jwtAuth.qna.domain.Question;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,7 +20,8 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Member implements UserDetails {
+@EntityListeners(AuditingEntityListener.class)
+public class Member extends BaseTimeEntity implements UserDetails {
 
     @Id
     @Column(name = "member_id")

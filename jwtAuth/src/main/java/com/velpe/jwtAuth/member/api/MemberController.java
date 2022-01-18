@@ -2,17 +2,20 @@ package com.velpe.jwtAuth.member.api;
 
 import com.velpe.jwtAuth.global.dto.DefaultResponse;
 import com.velpe.jwtAuth.global.util.GlobalUtil;
+import com.velpe.jwtAuth.member.application.MemberService;
 import com.velpe.jwtAuth.member.application.MemberServiceV1;
 import com.velpe.jwtAuth.member.dto.MemberModifyForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/members")
 public class MemberController {
 
-    private final MemberServiceV1 memberService;
+    private final MemberService memberService;
     private final GlobalUtil util;
 
     @GetMapping("")
@@ -25,8 +28,9 @@ public class MemberController {
 
     @PutMapping("/{memberId}")
     public DefaultResponse modifyMemberInfo(
-            @PathVariable Long memberId, @RequestBody MemberModifyForm memberModifyForm) throws Exception {
-        memberService.modifyInfo(memberId, memberModifyForm);
+            @RequestBody MemberModifyForm memberModifyForm, Principal principal) throws Exception {
+
+        memberService.modifyInfo(memberModifyForm);
 
         return new DefaultResponse(
                 "회원 정보수정 성공"
