@@ -1,8 +1,17 @@
 import React from "react";
-import "../scss/components/button.scss";
+import "../styles/components/button.scss";
 
-const Button = () => {
-  return <button type="submit" className="form-btn"></button>;
+interface ButtonProps {
+  name: string;
+  backgroundColor: string;
+}
+
+const Button: React.FC<ButtonProps> = ({ name, backgroundColor }) => {
+  return (
+    <button type="submit" className="form-btn" style={{ backgroundColor }}>
+      {name}
+    </button>
+  );
 };
 
 export default Button;

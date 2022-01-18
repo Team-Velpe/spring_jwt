@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
+import Input from "../../components/Input";
+import Button from "../../components/Button";
 import "../../styles/member.scss";
 
 const Login = () => {
@@ -10,11 +11,9 @@ const Login = () => {
       <form className="form">
         <p className="form-title">로그인 👋</p>
         <div className="form-input">
-          <input type="input" placeholder="아이디" style={{ marginBottom: "0.4rem" }} />
-          <input type="input" placeholder="비밀번호" />
-          <button type="button" className="form-btn">
-            로그인
-          </button>
+          <Input name="loginId" placeholder="아이디" />
+          <Input name="loginPw" placeholder="비밀번호" />
+          <Button name="로그인" backgroundColor="#ff4800" />
           <Link to="/join" className="form-join">
             회원가입
           </Link>

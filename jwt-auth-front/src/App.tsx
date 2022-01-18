@@ -6,7 +6,7 @@ import { Main, Join, Login, NotFound, Modify, List } from "./pages/Pages";
 
 import "./styles/global.scss"; // 전역 css 설정
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <BrowserRouter>
       <Routes>
