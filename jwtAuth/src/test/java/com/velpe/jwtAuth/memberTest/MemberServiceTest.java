@@ -10,7 +10,10 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -20,6 +23,20 @@ public class MemberServiceTest {
 
     @Autowired
     private MemberServiceV1 memberService;
+
+    @Autowired
+    private ApplicationContext applicationContext;
+
+    @Test
+    public void checkAllBeans(){
+        String[] beanNames = applicationContext.getBeanDefinitionNames();
+
+        Arrays.sort(beanNames);
+
+        for(String beanName : beanNames){
+            System.out.println(beanName);
+        }
+    }
 
     @Test
     public void checkBean(){
@@ -91,5 +108,14 @@ public class MemberServiceTest {
         memberService.save(memberSaveForm);
 
         assertThat(memberService.findAll().get(0).getLoginId()).isEqualTo(memberSaveForm.getLoginId());
+    }
+
+    @Test
+    @Transactional
+    public void memberListRequestTest() throws Exception {
+        MemberSaveForm memberSaveForm = new MemberSaveForm("test", "1", "김철수", "nick", "testm@test.com");
+        memberService.save(memberSaveForm);
+
+        assertThat(memberService.findAll().size()).isEqualTo(1);
     }
 }

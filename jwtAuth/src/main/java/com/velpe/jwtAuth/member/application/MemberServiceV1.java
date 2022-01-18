@@ -130,4 +130,5 @@ public class MemberServiceV1 implements MemberService {
                 .map(MemberInfoDto::new)
                 .collect(Collectors.toList());
     }
+
 }

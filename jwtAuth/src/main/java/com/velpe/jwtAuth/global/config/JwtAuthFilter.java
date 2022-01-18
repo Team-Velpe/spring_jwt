@@ -57,11 +57,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                     setAuthentication(newAccessToken);
 
                 }
-
-
             }
-
-            filterChain.doFilter(request, response);
+//            filterChain.doFilter(request, response);
         }
 
         filterChain.doFilter(request, response);
