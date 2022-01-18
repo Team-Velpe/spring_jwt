@@ -40,9 +40,9 @@ public class SignController {
             throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
         }
 
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(memberLoginForm.getLoginId(), memberLoginForm.getLoginPw());
-        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+//        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(memberLoginForm.getLoginId(), memberLoginForm.getLoginPw());
+//        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+//        SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String accessToken = jwtProvider.issueAccessToken(findMember.getLoginId(), findMember.getAuthority());
         String refreshToken = jwtProvider.issueRefreshToken(findMember.getLoginId(), findMember.getAuthority());

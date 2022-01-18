@@ -1,6 +1,8 @@
 package com.velpe.jwtAuth.member.domain;
 
 import com.velpe.jwtAuth.member.dto.Role;
+import com.velpe.jwtAuth.qna.domain.Answer;
+import com.velpe.jwtAuth.qna.domain.Question;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,6 +38,12 @@ public class Member implements UserDetails {
 
     private String email;
     private String thumbnail = "/default";
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
+    private List<Answer> answers;
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
+    private List<Question> questions;
 
     private boolean isAccountNonExpired = true;
     private boolean isAccountNonLocked = true;
