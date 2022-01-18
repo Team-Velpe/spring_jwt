@@ -2,11 +2,11 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import AppLayout from "./pages/AppLayout";
-import { Main, Join, Login, NotFound, Modify, List } from "./pages/Pages";
+import { Main, Join, Login, NotFound, Modify, List, Detail, Upload } from "./pages/Pages";
 
 import "./styles/global.scss"; // 전역 css 설정
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <BrowserRouter>
       <Routes>
@@ -15,7 +15,8 @@ const App = () => {
           <Route path="join" element={<Join />} />
           <Route path="login" element={<Login />} />
           <Route path="modify" element={<Modify />} />
-          <Route path="qna" element={<List />} />
+          <Route path="write" element={<Upload />} />
+          <Route path="qna" element={<Detail />} />
         </Route>
         <Route path="/*" element={<NotFound />} />
       </Routes>
