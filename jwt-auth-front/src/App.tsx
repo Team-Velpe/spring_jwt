@@ -4,9 +4,22 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AppLayout from "./pages/AppLayout";
 import { Main, Join, Login, NotFound, Modify, List, Detail, Upload } from "./pages/Pages";
 
+import { useRecoilState, 
+  useRecoilValue, 
+  useSetRecoilState, 
+  useResetRecoilState 
+} from 'recoil';
+
 import "./styles/global.scss"; // 전역 css 설정
+import { loginState } from "./utils/State";
 
 const App: React.FC = () => {
+
+  const [ isLogin, setIsLogin ] = useRecoilState(loginState);
+  // const currentCount = useRecoilValue(loginState); 
+
+  // console.log(currentCount);
+
   return (
     <BrowserRouter>
       <Routes>
