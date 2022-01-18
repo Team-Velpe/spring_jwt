@@ -2,6 +2,7 @@ package com.velpe.jwtAuth.member.application;
 
 import com.velpe.jwtAuth.member.dao.MemberRepository;
 import com.velpe.jwtAuth.member.domain.Member;
+import com.velpe.jwtAuth.member.dto.MemberInfoDto;
 import com.velpe.jwtAuth.member.dto.MemberModifyForm;
 import com.velpe.jwtAuth.member.dto.MemberSaveForm;
 import com.velpe.jwtAuth.member.dto.Role;
@@ -17,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional(readOnly = true)
@@ -37,6 +39,7 @@ public class MemberServiceV1 implements MemberService {
         Member member = Member.createMember(
                 memberSaveForm.getLoginId(),
                 passwordEncoder.encode(memberSaveForm.getLoginPw()),
+                memberSaveForm.getName(),
                 memberSaveForm.getNickname(),
                 Role.MEMBER,
                 memberSaveForm.getEmail()
@@ -120,7 +123,11 @@ public class MemberServiceV1 implements MemberService {
     }
 
 
-    public List<Member> findAll() {
-        return memberRepository.findAll();
+    public List<MemberInfoDto> findAll() {
+        List<Member> memberList = memberRepository.findAll();
+
+        return memberList.stream()
+                .map(MemberInfoDto::new)
+                .collect(Collectors.toList());
     }
 }

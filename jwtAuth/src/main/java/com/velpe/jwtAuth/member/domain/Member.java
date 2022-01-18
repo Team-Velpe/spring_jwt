@@ -43,13 +43,14 @@ public class Member implements UserDetails {
     private boolean isEnabled = true;
 
 
-    public static Member createMember(String loginId, String loginPw, String nickname, Role authority, String email) {
+    public static Member createMember(String loginId, String loginPw, String name, String nickname, Role authority, String email) {
 
         Member member = new Member();
 
         member.loginId = loginId;
         member.loginPw = loginPw;
 
+        member.name = name;
         member.nickname = nickname;
 
         member.authority = authority;
