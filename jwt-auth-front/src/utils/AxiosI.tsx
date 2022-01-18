@@ -11,6 +11,15 @@ axiosI.interceptors.request.use(
   function (config) {
     // 요청 성공 직전 호출됩니다.
     // axios 설정값을 넣습니다. (사용자 정의 설정도 추가 가능)
+
+    // 토큰 꺼내기
+    const originAccessToken = window.localStorage.getItem("accessToken");
+
+    config.headers = {
+      Authorization: `Bearer ${originAccessToken}`,
+      Accept: "application/json",
+    };
+
     return config;
   },
 
@@ -43,3 +52,5 @@ axiosI.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+export default axiosI;
