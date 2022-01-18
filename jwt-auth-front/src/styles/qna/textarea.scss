@@ -1,0 +1,13 @@
+@import "../common.scss";
+
+//textarea.scss
+textarea {
+  width: 300px;
+  border: 1px solid $white-gray;
+  border-radius: 6px;
+  padding: 0.8rem;
+  margin: 0.2rem 0 0.2rem 0;
+  font-size: 1rem;
+  font-family: $font-reg;
+  color: $gray;
+}
