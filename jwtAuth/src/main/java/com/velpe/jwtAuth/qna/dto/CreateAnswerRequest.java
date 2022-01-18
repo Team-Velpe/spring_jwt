@@ -15,4 +15,7 @@ public class CreateAnswerRequest {
     @NotBlank
     private String loginId;
 
+    @NotBlank
+    private Long q_id;
+
 }

@@ -28,9 +28,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         String accessToken = jwtProvider.getAccessToken(request);
         String refreshToken = jwtProvider.getRefreshToken(request);
 
-        System.out.println("accessTokenInAuthFilter : " + accessToken);
-        System.out.println("refreshTokenInAuthFilter : " + refreshToken);
-
         if ( accessToken != null ) {
 
 
@@ -58,7 +55,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
                 }
             }
-//            filterChain.doFilter(request, response);
+
+            
         }
 
         filterChain.doFilter(request, response);

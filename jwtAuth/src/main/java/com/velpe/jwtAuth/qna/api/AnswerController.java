@@ -2,8 +2,12 @@ package com.velpe.jwtAuth.qna.api;
 
 import com.velpe.jwtAuth.global.dto.DefaultResponse;
 import com.velpe.jwtAuth.global.dto.MessageResponse;
+import com.velpe.jwtAuth.member.application.MemberService;
+import com.velpe.jwtAuth.member.domain.Member;
 import com.velpe.jwtAuth.qna.application.AnswerServiceImpl;
+import com.velpe.jwtAuth.qna.application.QuestionService;
 import com.velpe.jwtAuth.qna.domain.Answer;
+import com.velpe.jwtAuth.qna.domain.Question;
 import com.velpe.jwtAuth.qna.dto.CreateAnswerRequest;
 import com.velpe.jwtAuth.qna.dto.UpdateAnswerRequest;
 import lombok.RequiredArgsConstructor;
@@ -19,12 +23,24 @@ import java.security.Principal;
 public class AnswerController {
 
     private final AnswerServiceImpl answerService;
+    private final QuestionService questionService;
+    private final MemberService memberService;
 
     @PostMapping("/api/v1/qna/a")
     @ResponseStatus(HttpStatus.CREATED)
     public DefaultResponse writeAnswer(@RequestBody @Valid CreateAnswerRequest createAnswerRequest, Principal principal) {
 
+        if (!principal.getName().equals(createAnswerRequest.getLoginId())) {
+            throw new IllegalStateException("올바르지 않은 요청입니다.");
+        }
+
+        Member currentMember = memberService.getMemberByLoginId(principal.getName());
+        Question targetQuestion = questionService.getOne(createAnswerRequest.getQ_id());
+
         Answer answer = Answer.createAnswer(createAnswerRequest.getBody());
+
+        answer.setQuestion(targetQuestion);
+        answer.setMember(currentMember);
 
         answerService.save(answer);
 
