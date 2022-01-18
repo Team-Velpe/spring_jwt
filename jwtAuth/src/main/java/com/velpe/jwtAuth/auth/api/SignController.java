@@ -3,6 +3,7 @@ package com.velpe.jwtAuth.auth.api;
 import com.velpe.jwtAuth.auth.application.JwtProvider;
 import com.velpe.jwtAuth.auth.dto.TokenResponse;
 import com.velpe.jwtAuth.global.dto.DefaultResponse;
+import com.velpe.jwtAuth.member.application.MemberService;
 import com.velpe.jwtAuth.member.application.MemberServiceV1;
 import com.velpe.jwtAuth.member.domain.Member;
 import com.velpe.jwtAuth.member.dto.MemberLoginForm;
@@ -23,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/api/v1/sign")
 public class SignController {
 
-    private final MemberServiceV1 memberService;
+    private final MemberService memberService;
     private final JwtProvider jwtProvider;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
 
@@ -65,21 +66,4 @@ public class SignController {
         );
     }
 
-    @GetMapping("/test")
-    public DefaultResponse showTest(){
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-
-        return new DefaultResponse(
-                username
-        );
-    }
-
-    @GetMapping("/test2")
-    public DefaultResponse showTest2(){
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-
-        return new DefaultResponse(
-                username
-        );
-    }
 }

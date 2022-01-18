@@ -49,18 +49,23 @@ public class MemberServiceV1 implements MemberService {
     }
 
     @Transactional
-    public void modifyInfo(Long memberId, MemberModifyForm memberModifyForm) throws Exception {
+    @Override
+    public void modifyInfo(MemberModifyForm memberModifyForm) throws Exception {
+
+
+
         if(isMemberExistByNickname(memberModifyForm.getNickname())){
             throw new Exception("이미 사용 중인 닉네임입니다.");
         }
 
-        Member member = memberRepository.findById(memberId)
+        Member member = memberRepository.findByLoginId(memberModifyForm.getLoginId())
                 .orElseThrow(()->new NoSuchElementException("존재하지 않는 회원입니다."));
 
         member.modifyInfo(memberModifyForm.getNickname());
     }
 
     @Transactional
+    @Override
     public void delete(Long memberId) {
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(()->new NoSuchElementException("존재하지 않는 회원입니다."));
@@ -68,8 +73,18 @@ public class MemberServiceV1 implements MemberService {
         memberRepository.delete(member);
     }
 
+    @Override
     public Member findByLoginId(String loginId){
         return memberRepository.findByLoginId(loginId).orElseThrow();
+    }
+
+    @Override
+    public List<MemberInfoDto> findAll() {
+        List<Member> memberList = memberRepository.findAll();
+
+        return memberList.stream()
+                .map(MemberInfoDto::new)
+                .collect(Collectors.toList());
     }
 
 
@@ -96,6 +111,7 @@ public class MemberServiceV1 implements MemberService {
 
     }
 
+
     private void isAvailableMember(MemberSaveForm memberSaveForm) throws Exception {
         if(isMemberExistByLoginId(memberSaveForm.getLoginId())){
             throw new Exception("이미 사용 중인 아이디입니다.");
@@ -120,15 +136,6 @@ public class MemberServiceV1 implements MemberService {
 
     private boolean isMemberExistByNickname(String nickname) {
         return !memberRepository.findByNickname(nickname).isEmpty();
-    }
-
-
-    public List<MemberInfoDto> findAll() {
-        List<Member> memberList = memberRepository.findAll();
-
-        return memberList.stream()
-                .map(MemberInfoDto::new)
-                .collect(Collectors.toList());
     }
 
 }

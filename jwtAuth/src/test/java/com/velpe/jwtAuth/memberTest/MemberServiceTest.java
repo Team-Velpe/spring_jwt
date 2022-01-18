@@ -1,8 +1,10 @@
 package com.velpe.jwtAuth.memberTest;
 
+import com.velpe.jwtAuth.member.application.MemberService;
 import com.velpe.jwtAuth.member.application.MemberServiceV1;
 import com.velpe.jwtAuth.member.domain.Member;
 import com.velpe.jwtAuth.member.dto.MemberInfoDto;
+import com.velpe.jwtAuth.member.dto.MemberModifyForm;
 import com.velpe.jwtAuth.member.dto.MemberSaveForm;
 import com.velpe.jwtAuth.member.dto.Role;
 import io.jsonwebtoken.lang.Assert;
@@ -22,21 +24,7 @@ import static org.assertj.core.api.Assertions.*;
 public class MemberServiceTest {
 
     @Autowired
-    private MemberServiceV1 memberService;
-
-    @Autowired
-    private ApplicationContext applicationContext;
-
-    @Test
-    public void checkAllBeans(){
-        String[] beanNames = applicationContext.getBeanDefinitionNames();
-
-        Arrays.sort(beanNames);
-
-        for(String beanName : beanNames){
-            System.out.println(beanName);
-        }
-    }
+    private MemberService memberService;
 
     @Test
     public void checkBean(){
@@ -67,9 +55,12 @@ public class MemberServiceTest {
 
         Member member = memberService.findByLoginId(memberSaveForm.getLoginId());
 
-        member.modifyInfo("modifyTest");
+        String mNick = "modifiedNick";
 
-        assertThat(member.getNickname()).isEqualTo("modifyTest");
+        MemberModifyForm memberModifyForm = new MemberModifyForm(mNick, memberSaveForm.getLoginId());
+        memberService.modifyInfo(memberModifyForm);
+
+        assertThat(member.getNickname()).isEqualTo(mNick);
     }
 
     @Test

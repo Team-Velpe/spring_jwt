@@ -1,10 +1,12 @@
 package com.velpe.jwtAuth.qna.domain;
 
+import com.velpe.jwtAuth.global.util.BaseTimeEntity;
 import com.velpe.jwtAuth.member.domain.Member;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -14,7 +16,8 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Question {
+@EntityListeners(AuditingEntityListener.class)
+public class Question extends BaseTimeEntity {
 
     @Id
     @GeneratedValue
@@ -30,12 +33,6 @@ public class Question {
 
     @OneToMany(mappedBy = "question",cascade = CascadeType.REMOVE)
     private List<Answer> answers = new ArrayList<>();
-
-    @Column(name = "reg_date")
-    private LocalDateTime regDate = LocalDateTime.now();
-
-    @Column(name = "update_date")
-    private LocalDateTime updateDate = LocalDateTime.now();
     
     
     // 연관관계 메소드
