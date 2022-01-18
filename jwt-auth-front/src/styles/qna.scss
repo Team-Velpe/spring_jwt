@@ -9,49 +9,4 @@
   justify-content: center;
   align-items: center;
   margin: 2rem 0 2rem 0;
-
-  .qna-list {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 80%;
-    padding: 1rem;
-    margin: 0.4rem 0 0.4rem 0;
-    border-radius: 10px;
-    border: 1px solid $white-gray;
-
-    .qna-cont {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-
-      .qna-title {
-        font-size: 1.6rem;
-        font-weight: bold;
-        padding: 0.8rem;
-        color: $main-color;
-      }
-
-      .qna-info {
-        .qna-question {
-          font-size: 1.1rem;
-        }
-
-        .qna-date {
-          color: $gray;
-        }
-      }
-    }
-
-    .qna-name {
-      font-weight: bold;
-      display: flex;
-      flex-direction: row;
-
-      p {
-        margin-right: 0.2rem;
-      }
-    }
-  }
 }
