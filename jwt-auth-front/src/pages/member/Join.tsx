@@ -2,9 +2,9 @@ import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
 
-import InputDiv from "../../components/InputDiv";
-import Button from "../../components/Button";
-import "../../styles/member.scss";
+import InputDiv from "../../components/member/InputDiv";
+import Button from "../../components/member/Button";
+import "../../styles/member/member.scss";
 
 const Join = () => {
   async function join(e: any) {

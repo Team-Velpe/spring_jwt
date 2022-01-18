@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/components/input.scss";
+import "../../styles/member/input.scss";
 
 import Input from "./Input";
 

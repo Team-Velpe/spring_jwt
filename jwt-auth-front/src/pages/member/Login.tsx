@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import Input from "../../components/Input";
-import Button from "../../components/Button";
-import "../../styles/member.scss";
+import Input from "../../components/member/Input";
+import Button from "../../components/member/Button";
+import "../../styles/member/member.scss";
 
 const Login = () => {
   return (

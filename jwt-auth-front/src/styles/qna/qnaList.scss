@@ -1,11 +1,11 @@
 @import "../common.scss";
 
+//quaList.scss
 .qna-list {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 80%;
   padding: 1rem;
   margin: 0.4rem 0 0.4rem 0;
   border-radius: 10px;
@@ -16,9 +16,9 @@
     flex-direction: row;
     align-items: center;
 
-    .qna-title {
-      font-size: 1.6rem;
-      font-weight: bold;
+    .qna-icon {
+      font-size: 2.4rem;
+      font-family: $font-ext;
       padding: 0.8rem;
       color: $main-color;
     }
@@ -26,6 +26,8 @@
     .qna-info {
       .qna-question {
         font-size: 1.1rem;
+        font-family: $font-bold;
+        margin-bottom: 0.2rem;
       }
 
       .qna-date {
@@ -42,5 +44,23 @@
     p {
       margin-right: 0.2rem;
     }
+  }
+}
+
+@include mobile {
+  .qna-list {
+    width: 80%;
+  }
+}
+
+@include tablet {
+  .qna-list {
+    width: 70%;
+  }
+}
+
+@include desktop {
+  .qna-list {
+    width: 60%;
   }
 }

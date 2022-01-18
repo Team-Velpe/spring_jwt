@@ -33,6 +33,18 @@ input {
   color: inherit;
 }
 
+hr {
+  width: 100%;
+  height: 0.2px;
+  color: $white-gray;
+  background-color: $white-gray;
+  border: none;
+}
+
+.bold {
+  font-family: $font-bold;
+}
+
 // header
 .header {
   display: flex;

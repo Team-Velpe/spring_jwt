@@ -1,7 +1,7 @@
 import React from "react";
 
-import QnaList from "../../components/QnaList";
-import "../../styles/qna.scss";
+import QnaList from "../../components/qna/QnaList";
+import "../../styles/qna/qna.scss";
 
 const List = () => {
   return (

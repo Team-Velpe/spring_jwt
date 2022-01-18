@@ -1,0 +1,63 @@
+@import "../common.scss";
+
+// question.scss
+.quest {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  margin: 0.4rem 0 0.4rem 0;
+  border-radius: 10px;
+  border: 1px solid $white-gray;
+
+  .quest-info {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 1rem 0 1rem 0;
+
+    .quest-icon {
+      font-size: 2.4rem;
+      font-family: $font-ext;
+      padding: 0.8rem;
+      color: $main-color;
+    }
+    .quest-writer {
+      margin-bottom: 0.2rem;
+    }
+    .quest-title {
+      font-size: 1.4rem;
+      font-family: $font-bold;
+      margin-bottom: 0.2rem;
+    }
+    .quest-date {
+      color: $gray;
+      font-size: 0.9rem;
+    }
+  }
+
+  .quest-cont {
+    margin-top: 1rem;
+    color: $gray;
+    font-size: 1rem;
+  }
+}
+
+@include mobile {
+  .quest {
+    width: 80%;
+  }
+}
+
+@include tablet {
+  .quest {
+    width: 70%;
+  }
+}
+
+@include desktop {
+  .quest {
+    width: 60%;
+  }
+}
