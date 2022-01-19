@@ -1,5 +1,6 @@
 package com.velpe.jwtAuth.member.application;
 
+import com.velpe.jwtAuth.global.exception.ExceptionMessage;
 import com.velpe.jwtAuth.member.dao.MemberRepository;
 import com.velpe.jwtAuth.member.domain.Member;
 import com.velpe.jwtAuth.member.dto.MemberInfoDto;
@@ -8,6 +9,7 @@ import com.velpe.jwtAuth.member.dto.MemberSaveForm;
 import com.velpe.jwtAuth.member.dto.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -30,7 +32,7 @@ public class MemberServiceV1 implements MemberService {
 
     @Transactional
     @Override
-    public void save(MemberSaveForm memberSaveForm) throws Exception {
+    public void save(MemberSaveForm memberSaveForm) {
 
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
@@ -50,32 +52,33 @@ public class MemberServiceV1 implements MemberService {
 
     @Transactional
     @Override
-    public void modifyInfo(MemberModifyForm memberModifyForm) throws Exception {
+    public void modifyInfo(MemberModifyForm memberModifyForm) {
 
 
 
         if(isMemberExistByNickname(memberModifyForm.getNickname())){
-            throw new Exception("이미 사용 중인 닉네임입니다.");
+            throw new DuplicateKeyException(ExceptionMessage.DuplicatedNickname.getValue());
         }
 
         Member member = memberRepository.findByLoginId(memberModifyForm.getLoginId())
-                .orElseThrow(()->new NoSuchElementException("존재하지 않는 회원입니다."));
+                .orElseThrow(()->new UsernameNotFoundException(ExceptionMessage.UsernameNotFound.getValue()));
 
         member.modifyInfo(memberModifyForm.getNickname());
     }
 
     @Transactional
     @Override
-    public void delete(Long memberId) {
-        Member member = memberRepository.findById(memberId)
-                .orElseThrow(()->new NoSuchElementException("존재하지 않는 회원입니다."));
+    public void delete(String loginId) {
+        Member member = memberRepository.findByLoginId(loginId)
+                .orElseThrow(()->new UsernameNotFoundException(ExceptionMessage.UsernameNotFound.getValue()));
 
         memberRepository.delete(member);
     }
 
     @Override
     public Member findByLoginId(String loginId){
-        return memberRepository.findByLoginId(loginId).orElseThrow();
+        return memberRepository.findByLoginId(loginId)
+                .orElseThrow(()->new UsernameNotFoundException(ExceptionMessage.UsernameNotFound.getValue()));
     }
 
     @Override
@@ -94,17 +97,18 @@ public class MemberServiceV1 implements MemberService {
     }
 
     @Override
-    public Member loadUserByUsername(String username) throws UsernameNotFoundException {
-        return memberRepository.findByLoginId(username).orElseThrow();
+    public Member loadUserByUsername(String username) {
+        return memberRepository.findByLoginId(username)
+                .orElseThrow(()->new UsernameNotFoundException(ExceptionMessage.UsernameNotFound.getValue()));
     }
 
     @Override
-    public Member getMemberByLoginId(String loginId) throws NoSuchElementException {
+    public Member getMemberByLoginId(String loginId) {
 
         Optional<Member> memberOptional = memberRepository.findByLoginId(loginId);
 
         memberOptional.orElseThrow(
-                () -> new NoSuchElementException("해당 회원은 존재하지 않습니다.")
+                () -> new UsernameNotFoundException(ExceptionMessage.UsernameNotFound.getValue())
         );
 
         return memberOptional.get();
@@ -112,17 +116,17 @@ public class MemberServiceV1 implements MemberService {
     }
 
 
-    private void isAvailableMember(MemberSaveForm memberSaveForm) throws Exception {
+    private void isAvailableMember(MemberSaveForm memberSaveForm) {
         if(isMemberExistByLoginId(memberSaveForm.getLoginId())){
-            throw new Exception("이미 사용 중인 아이디입니다.");
+            throw new DuplicateKeyException(ExceptionMessage.DuplicatedLoginId.getValue());
         }
 
         if(isMemberExistByEmail(memberSaveForm.getEmail())){
-            throw new Exception("이미 사용 중인 이메일입니다.");
+            throw new DuplicateKeyException(ExceptionMessage.DuplicatedEmail.getValue());
         }
 
         if(isMemberExistByNickname(memberSaveForm.getNickname())){
-            throw new Exception("이미 사용 중인 닉네임입니다.");
+            throw new DuplicateKeyException(ExceptionMessage.DuplicatedNickname.getValue());
         }
     }
 
