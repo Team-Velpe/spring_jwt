@@ -13,11 +13,11 @@ import java.util.List;
 
 public interface MemberService extends UserDetailsService {
 
-    void save(MemberSaveForm memberSaveForm) throws Exception;
+    void save(MemberSaveForm memberSaveForm);
 
-    void modifyInfo(MemberModifyForm memberModifyForm) throws Exception;
+    void modifyInfo(MemberModifyForm memberModifyForm);
 
-    void delete(Long memberId);
+    void delete(String loginId);
 
     Member findByLoginId(String loginId);
 

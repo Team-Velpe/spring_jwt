@@ -10,7 +10,6 @@ import javax.persistence.Enumerated;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class MemberSaveForm {
 
     private String loginId;

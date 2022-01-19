@@ -72,7 +72,7 @@ public class MemberServiceTest {
 
         Member member = memberService.findByLoginId(memberSaveForm.getLoginId());
 
-        memberService.delete(member.getId());
+        memberService.delete(member.getLoginId());
 
         assertThat(memberService.findAll()).isEmpty();
     }
