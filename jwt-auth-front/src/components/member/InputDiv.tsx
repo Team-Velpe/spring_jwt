@@ -11,7 +11,7 @@ interface InputDivProps {
 
 const InputDiv: React.FC<InputDivProps> = ({ info, name, placeholder }) => {
   return (
-    <div className="form-input-name">
+    <div className="form-input-div">
       <p>
         {info} <span>*</span>
       </p>

@@ -9,10 +9,6 @@
   align-items: center;
   justify-content: center;
   margin: 2rem 0 2rem 0;
-
-  button {
-    width: 330px;
-  }
 }
 
 .upload-title {
@@ -21,4 +17,28 @@
   font-weight: bold;
   margin-bottom: 1.2rem;
   text-align: center;
+}
+
+@include mobile {
+  .upload {
+    input {
+      width: 80%;
+    }
+  }
+}
+
+@include tablet {
+  .upload {
+    input {
+      width: 70%;
+    }
+  }
+}
+
+@include desktop {
+  .upload {
+    input {
+      width: 60%;
+    }
+  }
 }
