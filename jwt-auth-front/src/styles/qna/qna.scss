@@ -11,20 +11,25 @@
   margin: 2rem 0 2rem 0;
 }
 
+.comment {
+  display: flex;
+  flex-direction: column;
+}
+
 @include mobile {
-  textarea {
-    width: 80% !important;
+  .comment {
+    width: 80%;
   }
 }
 
 @include tablet {
-  textarea {
-    width: 70% !important;
+  .comment {
+    width: 70%;
   }
 }
 
 @include desktop {
-  textarea {
-    width: 60% !important;
+  .comment {
+    width: 60%;
   }
 }

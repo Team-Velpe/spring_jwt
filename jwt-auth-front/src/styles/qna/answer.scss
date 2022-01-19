@@ -38,6 +38,11 @@
   }
 }
 
+.comment {
+  display: flex;
+  flex-direction: column;
+}
+
 @include mobile {
   .answer {
     width: 80%;
