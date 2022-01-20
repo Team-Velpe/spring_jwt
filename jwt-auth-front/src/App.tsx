@@ -25,6 +25,7 @@ const App: React.FC = () => {
           <Route path="modify" element={<Modify />} />
           <Route path="write" element={<Upload />} />
           <Route path="qna" element={<Detail />} />
+          <Route path="qna/q/*" element={<Detail />} />
         </Route>
         <Route path="/*" element={<NotFound />} />
       </Routes>

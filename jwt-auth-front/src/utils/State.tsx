@@ -1,10 +1,14 @@
-import {
-    atom
-} from "recoil";
+import { atom } from "recoil";
 
 const loginState = atom({
-    key: "login",
-    default: false,
-})
+  key: "login",
+  default: false,
+});
 
-export { loginState }
+const questState = atom({
+  key: "quest",
+  default: "",
+});
+
+export { loginState };
+export { questState };
