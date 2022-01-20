@@ -1,13 +1,17 @@
 import axios from "axios";
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 import InputDiv from "../../components/member/InputDiv";
 import Button from "../../components/member/Button";
 import "../../styles/member/member.scss";
 
 const Join = () => {
+  const navigate = useNavigate();
+
   async function join(e: any) {
+    e.preventDefault();
+
     const { loginId, loginPw, name, nickname, email } = e.target;
 
     const data = {
@@ -21,7 +25,7 @@ const Join = () => {
     const result = await axios
       .post("http://localhost:8083/api/v1/sign/up", data)
       .then((response) => {
-        console.log(response);
+        navigate("/");
       })
       .catch((error) => {
         console.log(error);
