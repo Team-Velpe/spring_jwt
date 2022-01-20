@@ -30,37 +30,35 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
         if ( accessToken != null ) {
 
+            boolean isValidAccessToken = jwtProvider.validateToken(accessToken);
 
-            if (jwtProvider.validateToken(accessToken)) {
+            if (isValidAccessToken) {
                 setAuthentication(accessToken);
-            } else if ( !jwtProvider.validateToken(accessToken) && refreshToken != null ) {
+            } else {
 
+                if (refreshToken != null ){
+                    boolean isValidRefToken = jwtProvider.validateToken(refreshToken);
+                    boolean isIssuedRefToken = jwtProvider.isValidRefToken(refreshToken);
+                    boolean isBannedRefToken = jwtProvider.isBannedRefToken(refreshToken);
 
-                boolean isValidRefToken = jwtProvider.validateToken(refreshToken);
-                boolean isIssuedRefToken = jwtProvider.isValidRefToken(refreshToken);
-                boolean isBannedRefToken = jwtProvider.isBannedRefToken(refreshToken);
+                    if (isBannedRefToken) {
+                        filterChain.doFilter(request, response);
+                    }
 
-                if (isBannedRefToken) {
-                    filterChain.doFilter(request, response);
-                }
+                    if ( isValidRefToken && isIssuedRefToken ) {
 
-                if ( isValidRefToken && isIssuedRefToken ) {
+                        String loginId = jwtProvider.getLoginId(refreshToken);
+                        Role authority = jwtProvider.getAuthority(loginId);
 
-                    String loginId = jwtProvider.getLoginId(refreshToken);
-                    Role authority = jwtProvider.getAuthority(loginId);
+                        String newAccessToken = jwtProvider.issueAccessToken(loginId, authority);
 
-                    String newAccessToken = jwtProvider.issueAccessToken(loginId, authority);
+                        setAuthentication(newAccessToken);
 
-                    setAuthentication(newAccessToken);
-
+                    }
                 }
             }
-
-            
         }
-
         filterChain.doFilter(request, response);
-
     }
 
 

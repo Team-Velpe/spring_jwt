@@ -4,7 +4,6 @@ import com.velpe.jwtAuth.auth.application.JwtProvider;
 import com.velpe.jwtAuth.auth.dto.TokenResponse;
 import com.velpe.jwtAuth.global.dto.DefaultResponse;
 import com.velpe.jwtAuth.member.application.MemberService;
-import com.velpe.jwtAuth.member.application.MemberServiceV1;
 import com.velpe.jwtAuth.member.domain.Member;
 import com.velpe.jwtAuth.member.dto.MemberLoginForm;
 import com.velpe.jwtAuth.member.dto.MemberSaveForm;
@@ -41,9 +40,9 @@ public class SignController {
             throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
         }
 
-//        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(memberLoginForm.getLoginId(), memberLoginForm.getLoginPw());
-//        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
-//        SecurityContextHolder.getContext().setAuthentication(authentication);
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(memberLoginForm.getLoginId(), memberLoginForm.getLoginPw());
+        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String accessToken = jwtProvider.issueAccessToken(findMember.getLoginId(), findMember.getAuthority());
         String refreshToken = jwtProvider.issueRefreshToken(findMember.getLoginId(), findMember.getAuthority());
