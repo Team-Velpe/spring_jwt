@@ -10,10 +10,16 @@ import "./styles/global.scss"; // 전역 css 설정
 import { loginState } from "./utils/State";
 
 const App: React.FC = () => {
-  const [isLogin, setIsLogin] = useRecoilState(loginState);
-  // const currentCount = useRecoilValue(loginState);
 
-  // console.log(currentCount);
+  const token = window.localStorage.getItem('refreshToken');
+
+  const [isLogin, setIsLogin] = useRecoilState(loginState);
+  
+  if ( token !== null ) {
+    setIsLogin(true);
+  } else {
+    setIsLogin(false);
+  }
 
   return (
     <BrowserRouter>

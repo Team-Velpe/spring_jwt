@@ -33,7 +33,7 @@ const Upload = () => {
       .then((response) => {
         console.log(response);
         console.log(response.data.data);
-        window.location.replace("/api/v1/qna/q/" + String(response.data.data));
+        window.location.replace("/qna/q/" + String(response.data.data));
       })
       .catch((error) => {
         console.log(error);

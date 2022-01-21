@@ -14,7 +14,7 @@ const Header = () => {
 
         <ul>
           <li>
-            <Link to="/qna">QNA</Link>
+            <Link to="/">QNA</Link>
           </li>
         </ul>
       </nav>
