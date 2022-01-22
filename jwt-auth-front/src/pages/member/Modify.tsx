@@ -11,6 +11,35 @@ import { loginState } from "../../utils/State";
 import axiosI from "../../utils/AxiosI";
 
 const Modify = () => {
+  let pathUrl = window.location.pathname;
+  let path = pathUrl.split("/");
+  let detailNumber = path[path.length - 1];
+
+  const token: any = window.localStorage.getItem("accessToken");
+  const base64Payload = token.split(".")[1];
+  const result = JSON.parse(atob(base64Payload));
+
+  async function modify(e: any) {
+    e.preventDefault();
+
+    const { title, body } = e.target;
+
+    const data = {
+      title: title.value,
+      body: body.value,
+      loginId: result.sub,
+    };
+
+    await axiosI
+      .put("http://localhost:8083/api/v1/qna/q/" + detailNumber, data)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   return (
     <div className="modify">
       <form className="form">
