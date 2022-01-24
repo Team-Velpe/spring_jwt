@@ -5,17 +5,18 @@ import Input from "./Input";
 
 interface InputDivProps {
   info: string;
+  type: string;
   name: string;
   placeholder: string;
 }
 
-const InputDiv: React.FC<InputDivProps> = ({ info, name, placeholder }) => {
+const InputDiv: React.FC<InputDivProps> = ({ info, type, name, placeholder }) => {
   return (
     <div className="form-input-div">
       <p>
         {info} <span>*</span>
       </p>
-      <Input name={name} placeholder={placeholder} />
+      <Input type={type} name={name} placeholder={placeholder} />
     </div>
   );
 };

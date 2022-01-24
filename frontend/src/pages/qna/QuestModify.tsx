@@ -43,7 +43,7 @@ const QuestModify = () => {
   return (
     <form className="upload" onSubmit={modify}>
       <p className="upload-title">QNA 작성 📝</p>
-      <Input name="title" placeholder="제목을 입력해 주세요" />
+      <Input type="input" name="title" placeholder="제목을 입력해 주세요" />
       <Textarea name="body" placeholder="내용을 입력해 주세요" rows={20} />
       <Button name="수정하기" backgroundColor="" />
     </form>
