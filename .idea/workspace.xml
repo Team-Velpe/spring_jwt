@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c2397ac4-1758-4143-8b90-d9ea55a975fe" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/jwt-auth-front/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/jwt-auth-front/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jwt-auth-front/src/components/qna/Answer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/jwt-auth-front/src/components/qna/Answer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jwt-auth-front/src/components/qna/Question.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/jwt-auth-front/src/components/qna/Question.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jwt-auth-front/src/pages/Pages.ts" beforeDir="false" afterPath="$PROJECT_DIR$/jwt-auth-front/src/pages/Pages.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jwt-auth-front/src/pages/member/Modify.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/jwt-auth-front/src/pages/member/Modify.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jwt-auth-front/src/pages/qna/Detail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/jwt-auth-front/src/pages/qna/Detail.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jwt-auth-front/src/pages/qna/Upload.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/jwt-auth-front/src/pages/qna/Upload.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jwt-auth-front/src/styles/global.scss" beforeDir="false" afterPath="$PROJECT_DIR$/jwt-auth-front/src/styles/global.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jwt-auth-front/src/styles/qna/answer.scss" beforeDir="false" afterPath="$PROJECT_DIR$/jwt-auth-front/src/styles/qna/answer.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jwt-auth-front/src/styles/qna/qna.scss" beforeDir="false" afterPath="$PROJECT_DIR$/jwt-auth-front/src/styles/qna/qna.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jwt-auth-front/src/styles/qna/question.scss" beforeDir="false" afterPath="$PROJECT_DIR$/jwt-auth-front/src/styles/qna/question.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jwt-auth-front/src/styles/qna/upload.scss" beforeDir="false" afterPath="$PROJECT_DIR$/jwt-auth-front/src/styles/qna/upload.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jwt-auth-front/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/jwt-auth-front/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jwtAuth/src/main/java/com/velpe/jwtAuth/qna/api/AnswerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/jwtAuth/src/main/java/com/velpe/jwtAuth/qna/api/AnswerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jwtAuth/src/main/java/com/velpe/jwtAuth/qna/application/AnswerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/jwtAuth/src/main/java/com/velpe/jwtAuth/qna/application/AnswerServiceImpl.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="240gG0J8jZa0MVL1RJIh7Y7SDOg" />
+  <component name="ProjectViewState">
+    <option name="autoscrollToSource" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c2397ac4-1758-4143-8b90-d9ea55a975fe" name="Changes" comment="" />
+      <created>1642772821189</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1642772821189</updated>
+    </task>
+    <servers />
+  </component>
+</project>

@@ -44,6 +44,7 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
+    @Transactional
     public Long update(Long id, UpdateAnswerRequest updateAnswerRequest) throws NoSuchElementException {
 
         Answer findAnswer = getOne(id);
