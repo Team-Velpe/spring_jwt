@@ -8,15 +8,17 @@ import Button from "../../components/member/Button";
 
 import axiosI from "../../utils/AxiosI";
 
-const Upload = () => {
-  const navigate = useNavigate();
+const QuestModify = () => {
+  // const navigate = useNavigate();
+  let pathUrl = window.location.pathname;
+  let path = pathUrl.split("/");
+  let detailNumber = path[path.length - 1];
 
   const token: any = window.localStorage.getItem("accessToken");
-
   const base64Payload = token.split(".")[1];
   const result = JSON.parse(atob(base64Payload));
 
-  async function upload(e: any) {
+  async function modify(e: any) {
     e.preventDefault();
 
     const { title, body } = e.target;
@@ -27,12 +29,11 @@ const Upload = () => {
       loginId: result.sub,
     };
 
-    const axios = await axiosI
-      .post("http://localhost:8083/api/v1/qna/q", data)
+    await axiosI
+      .put("http://localhost:8083/api/v1/qna/q/" + detailNumber, data)
       .then((response) => {
         console.log(response);
-        console.log(response.data.data);
-        window.location.replace("/qna/q/" + String(response.data.data));
+        window.location.replace("/qna/q/" + detailNumber);
       })
       .catch((error) => {
         console.log(error);
@@ -40,13 +41,13 @@ const Upload = () => {
   }
 
   return (
-    <form className="upload" onSubmit={upload}>
+    <form className="upload" onSubmit={modify}>
       <p className="upload-title">QNA 작성 📝</p>
       <Input name="title" placeholder="제목을 입력해 주세요" />
       <Textarea name="body" placeholder="내용을 입력해 주세요" rows={20} />
-      <Button name="작성하기" backgroundColor="" />
+      <Button name="수정하기" backgroundColor="" />
     </form>
   );
 };
 
-export default Upload;
+export default QuestModify;

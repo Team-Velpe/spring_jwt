@@ -1,8 +1,10 @@
 export { default as Main } from './Main';
 export { default as Join } from './member/Join';
 export { default as Login } from './member/Login';
-export { default as Modify } from './member/Modify';
+export { default as MemModify } from './member/Modify';
 export { default as List } from './qna/List';
 export { default as Detail } from './qna/Detail';
 export { default as Upload } from './qna/Upload';
+export { default as QuestModify } from './qna/QuestModify';
+export { default as AnswerModify } from './qna/AnswerModify';
 export { default as NotFound } from './NotFound';
