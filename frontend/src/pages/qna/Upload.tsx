@@ -42,7 +42,7 @@ const Upload = () => {
   return (
     <form className="upload" onSubmit={upload}>
       <p className="upload-title">QNA 작성 📝</p>
-      <Input name="title" placeholder="제목을 입력해 주세요" />
+      <Input type="input" name="title" placeholder="제목을 입력해 주세요" />
       <Textarea name="body" placeholder="내용을 입력해 주세요" rows={20} />
       <Button name="작성하기" backgroundColor="" />
     </form>

@@ -25,7 +25,7 @@ const List = () => {
 
   return (
     <div className="qna">
-      {qList.length === 0 && <NotFound />}
+      {qList.length === 0 && <p>질문이 없습니다.</p>}
 
       {qList.map((q: any) => {
         return <QnaList question={q} key={q.id} />;

@@ -42,11 +42,11 @@ const Join = () => {
         <div className="form-div">
           <p className="form-title">회원가입 🙌</p>
           <div className="form-input">
-            <InputDiv info="아이디" name="loginId" placeholder="아이디를 입력해 주세요" />
-            <InputDiv info="비밀번호" name="loginPw" placeholder="비밀번호를 입력해 주세요" />
-            <InputDiv info="이름" name="name" placeholder="이름을 입력해 주세요" />
-            <InputDiv info="닉네임" name="nickname" placeholder="닉네임을 입력해 주세요" />
-            <InputDiv info="이메일" name="email" placeholder="이메일을 입력해 주세요" />
+            <InputDiv type="input" info="아이디" name="loginId" placeholder="아이디를 입력해 주세요" />
+            <InputDiv type="password" info="비밀번호" name="loginPw" placeholder="비밀번호를 입력해 주세요" />
+            <InputDiv type="input" info="이름" name="name" placeholder="이름을 입력해 주세요" />
+            <InputDiv type="input" info="닉네임" name="nickname" placeholder="닉네임을 입력해 주세요" />
+            <InputDiv type="input" info="이메일" name="email" placeholder="이메일을 입력해 주세요" />
             <Button name="회원가입" backgroundColor="#ff4800" />
             <Link to="/login" className="form-join">
               로그인
